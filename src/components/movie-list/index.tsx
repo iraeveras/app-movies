@@ -1,12 +1,13 @@
 'use client';
-
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Moviecard from "../movie-card";
+import { Movie } from "@/types/movie";
 import "./index.scss";
 
-export default function () {
+export default function Movielist() {
 
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState<Movie[]>([]);
 
     useEffect(() => {
         getMovies();
@@ -25,14 +26,13 @@ export default function () {
         })
     }
 
-
-
     return (
         <ul className="movie-list">
             {movies.map((movie) =>
-                <li>
-
-                </li>
+                <Moviecard
+                    key={movie.id}
+                    movie={movie}
+                />
             )}
         </ul>
     )

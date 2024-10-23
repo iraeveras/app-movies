@@ -1,3 +1,4 @@
+'use client';
 import "./index.scss";
 
 export default function Navbar() {
