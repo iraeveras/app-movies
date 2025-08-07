@@ -21,7 +21,7 @@ export default function Movielist() {
                 method: 'get',
                 url: 'https://api.themoviedb.org/3/discover/movie',
                 params: {
-                    api_key: '94f9f682e13cc451f5bbcd364ad07000',
+                    api_key: process.env.NEXT_PUBLIC_TMDB_KEY,
                     language: 'pt-BR'
                 }
             });
