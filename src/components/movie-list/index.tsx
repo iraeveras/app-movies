@@ -18,15 +18,17 @@ export default function Movielist() {
 
     const getMovies = async () => {
         try {
-            const response = await axios({
-                method: 'get',
-                url: 'https://api.themoviedb.org/3/discover/movie',
-                params: {
-                    api_key: process.env.NEXT_PUBLIC_TMDB_KEY,
-                    language: 'pt-BR'
+            const options = {
+                method: 'GET',
+                url: 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NGY5ZjY4MmUxM2NjNDUxZjViYmNkMzY0YWQwNzAwMCIsIm5iZiI6MTcyOTYyNjM3NS4zMTksInN1YiI6IjY3MTgwMTA3Yzc4MDJjYzUwMzU5ODk0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._tWIFNTuHTAEnv6FOq9qifA1teo90DJ8bDnubyg4C8k'
                 }
-            });
-            setMovies(response.data.results);
+            };
+            const response = await axios.request(options); // <--- Pega o objeto de resposta do axios
+            console.log(response.data); // <--- Mostra o corpo da resposta
+            setMovies(response.data.results); // <--- Agora sim, pega o campo correto
         } catch (error) {
             console.error('Failed to fetch movies', error);
             setError(error instanceof Error ? error.message : 'Failed to fetch movies');
