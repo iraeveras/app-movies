@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment Variables
+
+Create a `.env.local` file and set the TMDB API key:
+
+```bash
+NEXT_PUBLIC_TMDB_KEY=<valor>
+```
+
+This variable exposes the key to the client-side code to authenticate requests to The Movie Database API.
+
 ## Getting Started
 
 First, run the development server:
