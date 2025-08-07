@@ -10,6 +10,7 @@ export default function Movielist() {
 
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         getMovies();
@@ -28,6 +29,7 @@ export default function Movielist() {
             setMovies(response.data.results);
         } catch (error) {
             console.error('Failed to fetch movies', error);
+            setError(error instanceof Error ? error.message : 'Failed to fetch movies');
         } finally {
             setIsLoading(false);
         }
@@ -37,6 +39,12 @@ export default function Movielist() {
     if (isLoading) {
         return (
             <Loading />
+        )
+    }
+
+    if (error) {
+        return (
+            <p>Ocorreu um erro ao carregar os filmes.</p>
         )
     }
 
