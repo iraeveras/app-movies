@@ -16,21 +16,21 @@ export default function Movielist() {
     }, [])
 
     const getMovies = async () => {
-        await axios({
-            method: 'get',
-            url: 'https://api.themoviedb.org/3/discover/movie',
-            params: {
-                api_key: '94f9f682e13cc451f5bbcd364ad07000',
-                language: 'pt-BR'
-            }
-        }).then(response => {
-            setMovies(response.data.results)
-        })
-
-
-        setTimeout(() => {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: 'https://api.themoviedb.org/3/discover/movie',
+                params: {
+                    api_key: '94f9f682e13cc451f5bbcd364ad07000',
+                    language: 'pt-BR'
+                }
+            });
+            setMovies(response.data.results);
+        } catch (error) {
+            console.error('Failed to fetch movies', error);
+        } finally {
             setIsLoading(false);
-        }, 3000);
+        }
 
     }
 
