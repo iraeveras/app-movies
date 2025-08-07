@@ -1,3 +1,4 @@
+'use client';
 import { Movie } from '@/types/movie';
 import StarRating from '../star-rating';
 import './index.scss';
